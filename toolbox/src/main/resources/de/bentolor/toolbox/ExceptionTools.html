@@ -1,0 +1,202 @@
+<html>
+<body>
+
+<style type="text/css">
+    .selfdescribingex {
+        font-family: Segoe UI, Tahoma, sans-serif;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .selfdescribingex h1 {
+        margin: 10px 0px 8px 0px;
+        padding: 0px;
+    }
+
+    .exheader {
+        background-color: #fcc;
+        padding: 5px 15px 15px 15px;
+    }
+
+    .footer {
+        background-color: #eee;
+        padding: 5px 15px 15px 15px;
+        font-size: small;
+    }
+
+    .codepointer {
+        background-color: #f6f6f6;
+        padding: 20px 15px;
+        border-top: 2px solid #ccc;
+        border-bottom: 2px solid #ccc;
+    }
+
+    .codestack {
+        font-size: 0.85em;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .location {
+        font-weight: 400;
+        color: #666666;
+        margin-bottom: 6px;
+    }
+
+    .linenum {
+        float: left;
+        text-align: right;
+        width: 50px;
+        padding: 0px 0px;
+        background-color: #ddf;
+        border-right: 1px solid #999;
+    }
+
+    .codeline {
+        font-family: monospace;
+        padding: 1px 6px;
+        white-space: pre;
+    }
+
+    .active {
+        font-weight: bolder;
+        color: #090;
+    }
+</style>
+<div class="selfdescribingex">
+    <div class="exheader">
+        <h1>Java Exception occured</h1>
+        <strong>StringIndexOutOfBoundsException</strong> occured: String index out of range: 10
+    </div>
+    <div class="codepointer">
+        <div class="location">In java.lang.String (around line 1765)<br/>Showing according call in <strong>de\bentolor\toolbox\ExceptionToolsTest.java</strong>
+            (around line 103)
+        </div>
+        <div class="codestack">
+            <div class="codeline">
+                <div class="linenum">98:</div>
+                <span class="codeline">    //@Ignore</span></div>
+            <div class="codeline">
+                <div class="linenum">99:</div>
+                <span class="codeline">    public void testAsciiHtml() {</span></div>
+            <div class="codeline">
+                <div class="linenum">100:</div>
+                <span class="codeline">         String fooString = "abc";</span></div>
+            <div class="codeline">
+                <div class="linenum">101:</div>
+                <span class="codeline">        Throwable fakeProblem = null;</span></div>
+            <div class="codeline">
+                <div class="linenum">102:</div>
+                <span class="codeline">        try {</span></div>
+            <div class="codeline active">
+                <div class="linenum">103:</div>
+                <span class="codeline">            String b = fooString.substring(5, 10);</span></div>
+            <div class="codeline">
+                <div class="linenum">104:</div>
+                <span class="codeline">        } catch (Throwable e) {</span></div>
+            <div class="codeline">
+                <div class="linenum">105:</div>
+                <span class="codeline">            fakeProblem = e;</span></div>
+            <div class="codeline">
+                <div class="linenum">106:</div>
+                <span class="codeline">        }</span></div>
+            <div class="codeline">
+                <div class="linenum">107:</div>
+                <span class="codeline"></span></div>
+            <div class="codeline">
+                <div class="linenum">108:</div>
+                <span class="codeline">        String message = ExceptionTools.describeThrowableHtml(codeSearchPaths,fakeProblem, "de.bentolor");</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        This problem occurred on DATE and has been logged with id ID
+    </div>
+</div>
+<!--<style type="text/css">
+    .selfdescribingex {
+        font-family: Segoe UI, Tahoma, sans-serif;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .selfdescribingex h1 {
+        margin: 10px 0px 8px 0px;
+        padding: 0px;
+    }
+
+    .exheader {
+        background-color: #fcc;
+        padding: 5px 15px 15px 15px;
+    }
+
+    .footer {
+        background-color: #eee;
+        padding: 5px 15px 15px 15px;
+        font-size: small;
+    }
+
+    .codepointer {
+        background-color: #f6f6f6;
+        padding: 20px 15px;
+        border-top: 2px solid #ccc;
+        border-bottom: 2px solid #ccc;
+    }
+
+    .codestack {
+        font-size: 0.85em;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .location {
+        font-weight: 400;
+        color: #666666;
+        margin-bottom: 6px;
+    }
+
+    .linenum {
+        float: left;
+        text-align: right;
+        width: 50px;
+        padding: 0px 0px;
+        background-color: #ddf;
+        border-right: 1px solid #999;
+    }
+
+    .codeline {
+        font-family: monospace;
+        padding: 1px 6px;
+        white-space: pre;
+    }
+
+    .active {
+        font-weight: bolder;
+        color: #090;
+    }
+</style>
+
+<div class="selfdescribingex">
+    <div class="exheader">
+        <h1>Java Exception occured</h1>
+        <strong>EXCEPTIONNAME</strong> occurred: EXCEPTIONMESSAGE
+    </div>
+    <div class="codepointer">
+        <div class="location">In FILEPATH (around line CODELINE)</div>
+        <div class="codestack">
+            <div class="codeline"><div class="linenum">LINENUM:</div><span class="codeline">LINECONTENT</span></div>
+            <div class="codeline"><div class="linenum">1:</div><span class="codeline">    jfhdskjhfkdshk fjdshjfhjksdhfkjdhskfhsdkjhfjkdsh jkfhsdkjfhjdshfksd</span></div>
+            <div class="codeline active"><div class="linenum">1:</div><span class="codeline">            jfhdskjhfkdshk fjdshjfhjksdhfkjdhskfhsdkjhfjkdsh jkfhsdkjfhjdshfksd</span></div>
+            <div class="codeline"><div class="linenum">1:</div><span class="codeline">    jfhdskjhfkdshk fjdshjfhjksdhfkjdhskfhsdkjhfjkdsh jkfhsdkjfhjdshfksd</span></div>
+            <div class="codeline"><div class="linenum">1:</div><span class="codeline">jfhdskjhfkdshk fjdshjfhjksdhfkjdhskfhsdkjhfjkdsh jkfhsdkjfhjdshfksd</span></div>
+        </div>
+    </div>
+
+    <div class="footer">
+        This problem occurred on DATE and has been logged with id ID
+    </div>
+</div>-->
+
+</body>
+</html>
