@@ -10,8 +10,8 @@ import static org.junit.Assert.assertEquals;
 public class StringToolsTest {
     @Test
     public void testAbbreviate() throws Exception {
-        assertEquals("n..", StringTools.abbreviate(3, null));
+        assertEquals("nu…", StringTools.abbreviate(3, null));
         assertEquals("Hallo", StringTools.abbreviate(5, "Hallo"));
-        assertEquals("Ha..", StringTools.abbreviate(4, "Hallo"));
+        assertEquals("Hal…", StringTools.abbreviate(4, "Hallo"));
     }
 }
