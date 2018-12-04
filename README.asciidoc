@@ -1,0 +1,14 @@
+# Gradle 5 Kotlin-DSL based example build with subprojects and Maven release
+
+NOTE:: This is a work-in-progress
+
+This aims to be an example how to use Gradle 5 and the Kotlin DSL to create a build project which consists of multiple
+modules/suprojects which should be published/released as Maven artifacts.
+
+The core design goals are:
+
+* Elegant, clean & simple build with DRY
+* Project consisting of multiple, inter-dependent modules
+* Release to a Maven repository in quality equal to plain Maven-based build, meaning
+** Correct and fully state-of the Art `pom.xml` per artifact
+** Including `-source` and `-javadoc` Artifact
