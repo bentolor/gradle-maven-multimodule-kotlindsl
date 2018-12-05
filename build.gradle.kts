@@ -6,7 +6,7 @@ subprojects {
     group = "de.bentolor.sampleproject"
     version = "0.1.0"
 
-    val subProjectDir = this.projectDir
+    //val subProjectDir = this.projectDir
 
     repositories {
         jcenter()
@@ -26,7 +26,6 @@ subprojects {
         "testCompileOnly"("com.google.code.findbugs:jsr305:3.0.2")
         "testCompileOnly"("com.google.code.findbugs:findbugs-annotations:3.0.1")
     }
-
 
     tasks {
         // i18ngenerator
@@ -50,6 +49,20 @@ subprojects {
             from(sourceSets.main.get().allJava)
             classifier = "sources"
         }*/
+
+        /*val sourcesJar by creating(Jar::class) {
+            dependsOn(JavaPlugin.CLASSES_TASK_NAME)
+            classifier = "sources"
+            from(sourceSets["main"].allSource)
+        }*/
+
+        val javadocJar = creating(org.gradle.api.tasks.bundling.Jar::class) {
+            dependsOn(JavaPlugin.JAVADOC_TASK_NAME)
+            val javadoc by this@tasks
+            classifier = "javadoc"
+            from(javadoc)
+        }
+
     }
 
     configure<JavaPluginExtension> {
@@ -67,6 +80,11 @@ subprojects {
 
         repositories {
             mavenLocal()
+        }
+
+        artifacts {
+            //add("archives", sourcesJar)
+            //add("archives", javadocJar)
         }
     }
 }
