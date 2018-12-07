@@ -1,8 +1,10 @@
+@file:Suppress("UNUSED_VARIABLE") // needed to declare task names as variables
+
 import org.gradle.jvm.tasks.Jar
 
 subprojects {
-    apply(plugin = "java-library")
-    apply(plugin = "maven-publish")
+    apply<JavaLibraryPlugin>()
+    apply<MavenPublishPlugin>()
     group = "de.bentolor.sampleproject"
     version = "0.1.0"
 
@@ -13,18 +15,25 @@ subprojects {
     }
 
     dependencies {
+        // Avoid the otherwise necessary "implementation"("…")
+        val implementation by configurations
+        val compileOnly by configurations
+        val testImplementation by configurations
+        val testCompile by configurations
+
         // Dependencies used in EVERY module
         // Production deps
-        "compile"("commons-logging:commons-logging:1.2")
-        "compileOnly"("com.google.code.findbugs:jsr305:3.0.2")
-        "compileOnly"("com.google.code.findbugs:findbugs-annotations:3.0.1")
+        implementation("commons-logging:commons-logging:1.2")
+        compileOnly("com.google.code.findbugs:jsr305:3.0.2")
+        compileOnly("com.google.code.findbugs:findbugs-annotations:3.0.1")
 
         // Test deps
-        "testImplementation"("junit:junit:4.12")
-        "testImplementation"("org.jmock:jmock-junit4:2.9.0")
-        "testImplementation"("org.jmock:jmock-legacy:2.9.0")
-        "testCompileOnly"("com.google.code.findbugs:jsr305:3.0.2")
-        "testCompileOnly"("com.google.code.findbugs:findbugs-annotations:3.0.1")
+        testImplementation("junit:junit:4.12")
+        testImplementation("org.jmock:jmock-junit4:2.9.0")
+        testImplementation("org.jmock:jmock-legacy:2.9.0")
+        testImplementation("com.google.code.findbugs:jsr305:3.0.2")
+        testCompile("com.google.code.findbugs:findbugs-annotations:3.0.1")
+
     }
 
     tasks {
@@ -45,22 +54,17 @@ subprojects {
             }
         }*/
 
-        /*register("sourcesJar", Jar::class.java) {
-            from(sourceSets.main.get().allJava)
+        // declare a common "-source.jar"-Task. Needed i.e. for Maven publishing
+        val sourcesJar by creating(Jar::class) {
+            val sourceSets: SourceSetContainer by project
+            from(sourceSets["main"].allJava)
             classifier = "sources"
-        }*/
+        }
 
-        /*val sourcesJar by creating(Jar::class) {
-            dependsOn(JavaPlugin.CLASSES_TASK_NAME)
-            classifier = "sources"
-            from(sourceSets["main"].allSource)
-        }*/
-
-        val javadocJar = creating(org.gradle.api.tasks.bundling.Jar::class) {
-            dependsOn(JavaPlugin.JAVADOC_TASK_NAME)
-            val javadoc by this@tasks
-            classifier = "javadoc"
+        val javadoc by getting(Javadoc::class)
+        val javadocJar by creating(Jar::class) {
             from(javadoc)
+            classifier = "javadoc"
         }
 
     }
@@ -75,16 +79,18 @@ subprojects {
         publications {
             create<MavenPublication>(project.name) {
                 from(components["java"])
+
+                // If you configured them before
+                val sourcesJar by tasks.getting(Jar::class)
+                val javadocJar by tasks.getting(Jar::class)
+
+                artifact(sourcesJar)
+                artifact(javadocJar)
             }
         }
 
         repositories {
             mavenLocal()
-        }
-
-        artifacts {
-            //add("archives", sourcesJar)
-            //add("archives", javadocJar)
         }
     }
 }
