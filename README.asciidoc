@@ -12,3 +12,8 @@ The core design goals are:
 * Release to a Maven repository in quality equal to plain Maven-based build, meaning
 ** Correct and fully state-of the Art `pom.xml` per artifact
 ** Including `-source` and `-javadoc` Artifact
+
+## Tasks suported by root project
+
+`./gradlew publish` or `./gradlew publishToMavenLocal`:: Publishes all Maven publications produced by this project
+`./gradlew check`:: Run the verification tasks
