@@ -3,7 +3,7 @@ package de.bentolor.toolbox;
 import java.util.*;
 
 /**
- * Set implementation which holds its elements wrapped inside a {@link java.lang.ref.WeakReference weak reference}
+ * Set implementation which holds its elements wrapped inside a {@code java.lang.ref.WeakReference}
  * instance, so that they can be garbage collected.
  *
  * @param <TYPE> the type of the elements held by this set.
